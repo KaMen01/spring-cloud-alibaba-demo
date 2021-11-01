@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <modules>
+        <module>../order-service</module>
+        <module>../stock-service</module>
+        <module>../credit-service</module>
+        <module>../wm-service</module>
+    </modules>
+
+    <groupId>com.km</groupId>
+    <artifactId>parent-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!--父工程打包方式必须为pom，默认为jar打包-->
+    <packaging>pom</packaging>
+
+    <!-- 继承自项目：spring-boot-starter-parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.3.2.RELEASE</version>
+        <artifactId>spring-boot-starter-parent</artifactId>
+    </parent>
+
+    <!-- 版本依赖的锁定：java、spring-cloud、spring-cloud-alibaba -->
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
+    </properties>
+
+    <!-- 版本管理：spring-cloud、spring-cloud-alibaba -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type><!--当scope为import时这里的类型只能为pom类型-->
+                <scope>import</scope><!--表示此工程中的子工程可以直接import这个依赖中的资源-->
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
